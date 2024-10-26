@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrobrain - კოსმოსური განათლების პლატფორმა</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white">
+    <div id="stars-container" class="stars"></div>
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-black min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="bg-blue-900/30 backdrop-blur-lg border-b border-blue-800 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- ლოგო -->
+                <div class="flex items-center space-x-3">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L3 19H21L12 2Z" fill="#60A5FA"/>
+                        <path d="M12 4L5 18H19L12 4Z" fill="#2563EB"/>
+                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="#EFF6FF"/>
+                        <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" fill="#1E40AF"/>
+                        <path d="M12 19V21" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M9 20V22" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M15 20V22" stroke="#60A5FA" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <div class="text-2xl font-bold text-blue-400 flex items-center">
+                        <span class="animate-pulse">Astro</span>
+                        <span>brain</span>
+                    </div>
+                </div>
+                
+                <!-- დესკტოპის მენიუ -->
+                <div class="desktop-menu flex space-x-4">
+                    <button class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-blue-800 transition-colors duration-200" data-section="home">მთავარი</button>
+                    <button class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-blue-800 transition-colors duration-200" data-section="quiz">ქვიზი</button>
+                    <button class="nav-btn px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-blue-800 transition-colors duration-200" data-section="game">VR თამაში</button>
+                </div>
+
+                <!-- მობილური მენიუს ღილაკი -->
+                <button class="mobile-menu p-2 rounded-md hover:bg-blue-800 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- მობილური ნავიგაციის აითემები -->
+            <div class="mobile-nav-items">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <button class="nav-btn w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-800 transition-colors duration-200" data-section="home">მთავარი</button>
+                    <button class="nav-btn w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-800 transition-colors duration-200" data-section="quiz">ქვიზი</button>
+                    <button class="nav-btn w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-800 transition-colors duration-200" data-section="game">VR თამაში</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="pt-16">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl font-bold mb-4">აღმოაჩინე კოსმოსი</h1>
+                    <p class="text-xl text-gray-400">ინტერაქციული სწავლება და თავგადასავლები</p>
+                </div>
+        
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 opacity-0 transform translate-y-4 transition-all duration-500" id="features-grid">
+                    <!-- Features -->
+                    <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl p-6 border border-blue-800 hover:bg-blue-800/30 transition">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full mb-4 flex items-center justify-center float">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold mb-2">სასწავლო კურსები</h2>
+                        <p class="text-gray-400">აღმოაჩინე კოსმოსის საიდუმლოებები</p>
+                    </div>
+        
+                    <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl p-6 border border-blue-800 hover:bg-blue-800/30 transition">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full mb-4 flex items-center justify-center float">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold mb-2">კოსმოსური თამაში</h2>
+                        <p class="text-gray-400">იმოგზაურე სხვადასხვა პლანეტებზე</p>
+                    </div>
+        
+                    <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl p-6 border border-blue-800 hover:bg-blue-800/30 transition">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full mb-4 flex items-center justify-center float">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold mb-2">ქვიზები</h2>
+                        <p class="text-gray-400">შეამოწმე შენი ცოდნა</p>
+                    </div>
+                </div>
+        
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-0 transform translate-y-4 transition-all duration-500" id="courses-grid">
+                    <!-- Courses -->
+                    <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden hover:bg-blue-800/30 transition">
+                        <img src="images/photo2.jpg" alt="Course" class="w-full h-48 object-cover" />
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">შესავალი ასტრონომიაში</h3>
+                            <p class="text-gray-400 mb-4">შეისწავლე კოსმოსის საფუძვლები</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">დაწყება</button>
+                        </div>
+                    </div>
+        
+                    <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden hover:bg-blue-800/30 transition">
+                        <img src="images/photo1.jpg" alt="Course" class="w-full h-48 object-cover" />
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">ეგზოპლანეტები</h3>
+                            <p class="text-gray-400 mb-4">აღმოაჩინე უცხო სამყაროები</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">დაწყება</button>
+                        </div>
+                    </div>
+        
+                    <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden hover:bg-blue-800/30 transition">
+                        <img src="images/photo.jpg" alt="Course" class="w-full h-48 object-cover" />
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold mb-2">კოსმოსური მისიები</h3>
+                            <p class="text-gray-400 mb-4">გაეცანი კოსმოსურ მოგზაურობებს</p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">დაწყება</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section hidden">
+            <main class="max-w-3xl mx-auto px-4 py-8">
+                <div id="quiz-container" class="bg-blue-900/20 backdrop-blur-lg rounded-xl p-6 border border-blue-800">
+                    <div id="quiz-progress" class="mb-6">
+                        <div class="h-2 bg-blue-900 rounded-full">
+                            <div id="progress-bar" class="h-full bg-blue-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <div class="text-right text-sm text-gray-400 mt-2">
+                            კითხვა <span id="current-question">1</span>/<span id="total-questions">5</span>
+                        </div>
+                    </div>
+
+                    <div id="question-container" class="mb-8 fade-in"></div>
+                    <div id="options-container" class="space-y-4"></div>
+                    <div id="feedback-container" class="mt-6 p-4 rounded-lg hidden"></div>
+
+                    <div class="mt-6 flex justify-between">
+                        <button id="prev-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed hidden">
+                            წინა
+                        </button>
+                        <button id="next-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            შემდეგი
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- Game Section -->
+        <section id="game" class="section hidden">
+            <div class="container mx-auto">
+                <main>
+                    <div class="mb-16">
+                        <h2 class="text-2xl font-bold mb-8 text-center">VR პროტოტიპის გალერეა</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                            <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden cursor-pointer hover:bg-blue-800/30 transition">
+                                <img src="images/photo3.png" alt="მარსის ზედაპირის VR გამოცდილება" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <p class="text-gray-300">მარსის ზედაპირის VR გამოცდილება</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden cursor-pointer hover:bg-blue-800/30 transition">
+                                <img src="images/Screen Shot 2024-10-24 at 12.00.58 AM.png" alt="კოსმოსური სადგურის სიმულაცია" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <p class="text-gray-300">კოსმოსური სადგურის სიმულაცია</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden cursor-pointer hover:bg-blue-800/30 transition">
+                                <img src="images/photo8.png" alt="მთვარის ბაზის დათვალიერება" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <p class="text-gray-300">მთვარის ბაზის დათვალიერება</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden cursor-pointer hover:bg-blue-800/30 transition">
+                                <img src="images/photo7.png" alt="სატურნის რგოლების შესწავლა" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <p class="text-gray-300">სატურნის რგოლების შესწავლა</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden cursor-pointer hover:bg-blue-800/30 transition">
+                                <img src="images/photo4.png" alt="გალაქტიკის ცენტრის კვლევა" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <p class="text-gray-300">გალაქტიკის ცენტრის კვლევა</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-900/20 backdrop-blur-lg rounded-xl overflow-hidden cursor-pointer hover:bg-blue-800/30 transition">
+                                <img src="images/photo6.png" alt="ასტეროიდების ველში მოგზაურობა" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <p class="text-gray-300">ასტეროიდების ველში მოგზაურობა</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+                        <div class="bg-blue-900/90 backdrop-blur-lg rounded-xl p-4 max-w-3xl w-full">
+                            <img id="modalImage" src="" alt="" class="w-full h-auto rounded-lg mb-4">
+                            <p id="modalCaption" class="text-lg text-gray-300"></p>
+                            <button id="closeModal" class="absolute top-4 right-4 text-white hover:text-gray-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </section>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>
